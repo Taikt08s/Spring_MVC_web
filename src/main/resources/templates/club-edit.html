@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Club Edit</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column ">
+<div th:insert="layout :: header"></div>
+    <div class="container">
+        <form role="form" method="post" th:action="@{/clubs/{clubID}/edit(clubID=${club.id})}" th:object="${club}" >
+            <input type="hidden" th:field="*{id}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="title">Title</label>
+                    <input type="text"
+                           class="form-control"
+                           id="title"
+                           name="title"
+                           th:field="*{title}"
+                           placeholder="Title">
+                    <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}" ></p>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="photoUrl">Photo Url</label>
+                    <input type="text"
+                           class="form-control"
+                           id="photoUrl"
+                           name="photoUrl"
+                           th:field="*{photoUrl}"
+                           placeholder="Photo Url">
+                    <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}" ></p>
+                </div>
+            </div>
+            <!-- Adjusted content input box with increased rows -->
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control"
+                          id="content"
+                          name="content"
+                          th:field="*{content}"
+                          placeholder="Write something here..."
+                          rows="6"></textarea>
+                <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}" ></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirm Change</button>
+        </form>
+    </div>
+</body>
+<div th:insert="layout :: footer"></div>
+</html>

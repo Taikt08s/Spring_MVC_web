@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Event list</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+<div th:insert="layout :: header"></div>
+<main class="flex-shrink-0">
+    <!-- Page Content-->
+    <section class="py-5">
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h1 class="fw-bolder">Find Anime Events</h1>
+                <p class="lead fw-normal text-muted mb-0">Anime event near you</p>
+            </div>
+            <div class="row gx-5">
+                <div th:each="event:${events}" class="col-lg-6 mb-2">
+                    <div class="position-relative mb-3">
+                        <img class="img-fluid rounded-3 mb-3" th:src="${event.photoUrl}" alt="..."/>
+                        <a th:text="${event.name}"
+                           class="h3 fw-bolder text-decoration-none link-dark stretched-link"></a>
+                    </div>
+                    <a th:href="@{/events/{eventID}(eventID=${event.id})}" class="btn btn-primary">View</a>
+                    <div th:if="${user.id} == ${event.club.createdBy.id}">
+                        <a th:href="@{/events/{eventID}/edit(eventID=${event.id})}" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+<div th:insert="layout :: footer"></div>
+</html>

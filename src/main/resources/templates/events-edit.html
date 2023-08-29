@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Club Create</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<body class="d-flex flex-column h-100">
+<div th:insert="layout :: header"></div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <form role="form" method="post" th:action="@{/events/{eventID}/edit(eventID=${eventID})}" th:object="${club}">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           name="name"
+                           th:field="*{name}"
+                           placeholder="Event name">
+                    <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="type">Type</label>
+                    <input type="text"
+                           class="form-control"
+                           id="type"
+                           name="type"
+                           th:field="*{type}"
+                           placeholder="Event type">
+                    <p th:if="${#fields.hasErrors('type')}" class="text-danger" th:errors="*{type}"></p>
+                </div>
+            </div>
+            <!-- Adjusted content input box with increased rows -->
+            <div class="form-group">
+                <label for="photoUrl">Photo Url</label>
+                <input class="form-control"
+                       type="text"
+                       id="photoUrl"
+                       name="photoUrl"
+                       th:field="*{photoUrl}"
+                       placeholder="Photo Url"
+                       rows="6">
+                <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+            </div>
+            <div class="form-group">
+                <label for="startTime">Start time</label>
+                <input type="datetime-local"
+                       class="form-control"
+                       id="startTime"
+                       name="startTime"
+                       th:field="*{startTime}"
+                       placeholder="Photo Url"
+                       rows="6">
+                <p th:if="${#fields.hasErrors('startTime')}" class="text-danger" th:errors="*{startTime}"></p>
+            </div>
+            <div class="form-group">
+                <label for="endTime">End time</label>
+                <input type="datetime-local"
+                       class="form-control"
+                       id="endTime"
+                       name="endTime"
+                       th:field="*{endTime}"
+                       placeholder="Photo Url"
+                       rows="6">
+                <p th:if="${#fields.hasErrors('endTime')}" class="text-danger" th:errors="*{endTime}"></p>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</main>
+</body>
+<div th:insert="layout :: footer"></div>
+</html>

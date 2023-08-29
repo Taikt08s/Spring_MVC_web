@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Club Create</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
+</head>
+<div th:insert="layout :: header"></div>
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder" th:text="${event.name}">Event</h1>
+            <p class="lead mb-0">アニメ</p>
+        </div>
+    </div>
+</header>
+<body class="d-flex flex-column ">
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- Blog entries-->
+            <div class="col-lg-8">
+                <!-- Featured blog post-->
+                <div class="card mb-4">
+                    <a href="#!"><img class="card-img-top" th:src="${event.photoUrl}" alt="..."/></a>
+                    <div class="card-body">
+                        <div th:if="${event.createdOn != null}" class="small text-muted"
+                             th:text="${event.createdOn}"></div>
+                        <div th:if="${event.createdOn == null}" class="small text-muted"
+                             th:text="${event.updatedOn}"></div>
+                        <h2 class="card-title">About this event</h2>
+                        <p class="card-text" th:text="${event.type}"></p>
+                        <div th:if="${user.id} == ${event.club.createdBy.id}">
+                            <a class="btn btn-primary" th:href="@{/events/{eventID}/delete(eventID=${event.id})}"
+                               onclick="return confirm('Delete this event?')">Delete event</a>
+                            <a class="btn btn-primary" th:href="@{/events/{eventID}/edit(eventID=${event.id})}">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Side widgets-->
+            <div class="col-lg-4">
+                <!-- Search widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Enter search term..."
+                                   aria-label="Enter search term..." aria-describedby="button-search"/>
+                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Categories widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Categories</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#!">Fan art</a></li>
+                                    <li><a href="#!">Cosplayer</a></li>
+                                    <li><a href="#!">Items</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Side widget-->
+                <div class="card mb-4">
+                    <div class="card-header">Related Post</div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<div th:insert="layout :: footer"></div>
+</html>
