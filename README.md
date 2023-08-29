@@ -12,6 +12,10 @@ Some of the files is on my local computer so it might not loaded change the url 
 I have added some features some remember to update it like forgot-password and login with google since they required a gmail to send mail and Google API 
 to use the Google login
 ![image](https://github.com/Taikt08s/Spring_MVC_web/assets/128201525/1f74dbc8-af89-4e3e-97f1-08962a68d201)
+Last there's a application.yml which you can configure with ascii file to load some cool picture when you run the project!
+
+![image](https://github.com/Taikt08s/Spring_MVC_web/assets/128201525/20ce3b05-f9fa-48b9-b276-45bc6e299b63)
+
 I really hope you can use my project and learn something.More updates will be commited!
 
 
